@@ -1,0 +1,51 @@
+<html>
+
+<head>
+
+  {{.HeadElements}}
+
+  <script>
+    history.pushState(null, null, null);
+    window.addEventListener("popstate", (e) => {
+      history.pushState(null, null, null);
+      e.preventDefault();
+    });
+    window.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+  </script>
+
+  <script src="turbo.es2017-umd.js"></script>
+
+  <script>
+    let ws = new WebSocket("ws://localhost:{{.Port}}/ws");
+    Turbo.session.connectStreamSource(ws);
+    ws.onopen = function (e) {
+      document.addEventListener("click", function (e) {
+        let parts = e.target.id.split("-");
+        if (!(parts.length == 2 && parts[0] == "oden")) {
+          return
+        }
+        ev = {
+          target: parts[1],
+          event: "click",
+          props: {},
+        };
+        ws.send(JSON.stringify(ev))
+      });
+    };
+    window.onbeforeunload = function () {
+      Turbo.session.disconnectStreamSource(ws);
+      ws.close();
+    }
+  </script>
+
+  <meta charset="utf-8">
+  <title>{{.Name}}</title>
+</head>
+
+<body>
+  {{.Widget}}
+</body>
+
+</html>
