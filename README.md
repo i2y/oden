@@ -2,7 +2,7 @@
 Oden is a cross-platform desktop GUI toolkit for Gophers.
 
 ## Introduction
-The goal of Oden is to provide a single fine framework for gophers easy to create desktop GUI applications for several OS platforms. The idea of Oden is to successfully achevie the goal by combining browser technology available on most platforms with the easy cross-compilation that is an important feature of Go.
+The goal of Oden is to provide a single fine framework for gophers easy to create and distribute desktop GUI applications for several OS platforms. The idea of Oden is to successfully achevie the goal by combining browser technology available on most platforms with the easy cross-compilation that is an important feature of Go.
 
 ## Features
 - Oden is a pure Go library without cgo.
