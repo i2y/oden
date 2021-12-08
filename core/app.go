@@ -123,6 +123,7 @@ func NewApp(name string, width, height int, view Widget) *App {
 		err := tmpl.Execute(w, &TemplateParams{
 			Name:         app.name,
 			HeadElements: headElements,
+			Events:       targetEvents,
 			Widget:       topWidget.View(),
 			Port:         app.port(),
 		})
@@ -197,6 +198,7 @@ var turbo string
 type TemplateParams struct {
 	Name         string
 	HeadElements string
+	Events       []TargetEvent
 	Widget       string
 	Port         int
 }
@@ -270,8 +272,19 @@ func AddEventHandler(w Widget, event string, handler func(ev Event)) {
 
 var headElements string
 
-func AddHeadElements(s string) {
+func SetHeadElements(s string) {
 	headElements = s
+}
+
+type TargetEvent struct {
+	Name     string
+	PropName string
+}
+
+var targetEvents []TargetEvent
+
+func SetTargetEvents(events []TargetEvent) {
+	targetEvents = events
 }
 
 var assetsFS http.FileSystem

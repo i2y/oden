@@ -37,7 +37,9 @@ type Widget interface {
 	BorderRadius(r int) Widget
 	FontSize(size *FontSize) Widget
 	Padding(n int) Widget
+	// TODO Margin(n int) Widget
 	OnClick(func(ev core.Event)) Widget
+	OnChange(func(ev core.Event)) Widget
 }
 
 type SizePolicy int
@@ -264,6 +266,11 @@ func (b *Base) OnClick(handler func(ev core.Event)) Widget {
 	return b.widget
 }
 
+func (b *Base) OnChange(handler func(ev core.Event)) Widget {
+	core.AddEventHandler(b.widget, "sl-change", handler)
+	return b.widget
+}
+
 type EventPublisher interface {
 	AddListener(w Widget)
 	Notify()
@@ -405,7 +412,7 @@ func (b *Base) Padding(n int) Widget {
 var assets embed.FS
 
 func init() {
-	core.AddHeadElements(`
+	core.SetHeadElements(`
   <link rel="stylesheet" media="(prefers-color-scheme:light)"
     href="assets/node_modules/@shoelace-style/shoelace/dist/themes/light.css">
   <link rel="stylesheet" media="(prefers-color-scheme:dark)"
@@ -414,6 +421,9 @@ func init() {
   <script type="module" src="assets/node_modules/@shoelace-style/shoelace/dist/shoelace.js"></script>
 
   <link rel="stylesheet" href="assets/style.css">`)
-
+	core.SetTargetEvents([]core.TargetEvent{
+		{Name: "click", PropName: ""},
+		{Name: "sl-change", PropName: "value"}},
+	)
 	core.MountAssets(assets)
 }

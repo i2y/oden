@@ -31,13 +31,13 @@ func ButtonWithModel(m *ButtonModel) *ButtonWidget {
 func (b *ButtonWidget) View() string {
 	return fmt.Sprintf(
 		`<sl-button class="btn" id="%s" %s style="%s" size="large">%s</sl-button>
-		 <style> sl-button#%s::part(base) {%s %s}</style>`,
+		 <style> sl-button#%s::part(base) {%s; %s}</style>`,
 		b.IDStr(),
 		b.style,
 		b.SizeStyle(),
 		html.EscapeString(b.model.label),
 		b.IDStr(),
-		"--sl-input-height-medium: 100%",
+		"--sl-input-height-medium: 100%", // TODO
 		b.TextStyle(),
 	)
 }
@@ -92,7 +92,7 @@ func NewButtonModel(label string) *ButtonModel {
 	}
 }
 
-func (bm *ButtonModel) Label(label string) string {
+func (bm *ButtonModel) Label() string {
 	return bm.label
 }
 
@@ -140,7 +140,7 @@ func (k Kind) String() string {
 	case Warning:
 		return "warning"
 	case Dangerous:
-		return "dangerous"
+		return "danger"
 	default:
 		return "default"
 	}

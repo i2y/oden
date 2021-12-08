@@ -20,19 +20,31 @@
   <script>
     let ws = new WebSocket("ws://localhost:{{.Port}}/ws");
     Turbo.session.connectStreamSource(ws);
-    ws.onopen = function (e) {
-      document.addEventListener("click", function (e) {
+
+    function makeListener(eventName, propName) {
+      return function (e) {
         let parts = e.target.id.split("-");
         if (!(parts.length == 2 && parts[0] == "oden")) {
           return
         }
+        if (propName == "") {
+          props = {}
+        } else {
+          props = { [propName]: e.target[propName] }
+        }
         ev = {
           target: parts[1],
-          event: "click",
-          props: {},
+          event: eventName,
+          props: props,
         };
         ws.send(JSON.stringify(ev))
-      });
+      }
+    }
+
+    ws.onopen = function (e) {
+      {{range.Events}}
+      document.addEventListener("{{.Name}}", makeListener("{{.Name}}", "{{.PropName}}"));
+      {{end}}
     };
     window.onbeforeunload = function () {
       Turbo.session.disconnectStreamSource(ws);
