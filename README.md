@@ -1,11 +1,14 @@
 # 🍢 Oden
 Oden is a cross-platform desktop GUI toolkit for Gophers.
 
-## About
+## Introduction
+The goal of Oden is to provide a single fine framework for gophers easy to create desktop GUI applications for several OS platforms. The idea of Oden is to successfully achevie the goal by combining browser technology available on most platforms with the easy cross-compilation that is an important feature of Go.
+
+## Features
 - Oden is a pure Go library without cgo.
 - Oden utilizes a browser that is already installed on the desktop where an Oden app is installed.
 - Oden doesn't require Gophers to have any knowledge of HTML/CSS/JS.
-- Oden provides easy to use API. The `widget` module supports decralative UI style programming.
+- Oden provides easy to use API. The widget module supports decralative UI style programming.
 
 ## A Quick Look
 This example is a very simple counter app using Oden.
@@ -16,7 +19,7 @@ package main
 
 import (
     core "github.com/i2y/oden/core"
-    . "github.com/i2y/oden/widgets"
+    . "github.com/i2y/oden/widget"
 )
 
 func main() {
@@ -70,12 +73,9 @@ $ ./main
 Oden source code repository is a multi-module repository.
 Oden is composed of two modules: `core` module and `widget` module.
 - The `core` module provides the interaction with a browser, widget interface required by core module, etc.
-- The `widgets` module provides a standard set of widgets for Oden.
+- The `widget` module provides a standard set of widgets for Oden.
 
-Note: You do not necessarily need to use the `widgets` module. If you want, you can define and use your own widget set module. For this purpose, Oden provides `core` and `widgets` as independent modules, to make the boundary between them clear. This also reduces the size of the generated binary when combining core module with your own widget module, without having to include the standard `widget` module.
-
-### Architecture
-TODO
+Note: You do not necessarily need to use the `widget` module. If you want, you can define and use your own widget set module. For this purpose, Oden provides `core` and `widget` as independent modules, to make the boundary between them clear. This also reduces the size of the generated binary when combining core module with your own widget module, without having to include the standard `widget` module.
 
 ### Supported Browsers
 - WebView2
@@ -84,9 +84,9 @@ TODO
 - Chromium
 - Firefox
 
-When Oden app starts, Oden try to detect a browser in the order of the above list.
-So the order of priority is this.
-`Chrome > Edge > Chromium > Firefox`
+When an Oden application starts, Oden will try to detect a browser installed on the host machine in the order of the list above.
+In other words, the order of priority is as follows.
+`WebView2 > Chrome > Edge > Chromium > Firefox`
 
 ### Limitations
 - If you use a browser other than WebView2, the app window will be opened as the browser's one.
@@ -123,5 +123,5 @@ You can also use [go-winres](https://github.com/tc-hib/go-winres), [rsrc](https:
 - Add more widgets
 - Refine Oden's API a little bit after Generics related features is introduced in Go 1.18
 
-## LICENSE
+## License
 [MIT License](https://github.com/i2y/oden/blob/main/LICENSE)
