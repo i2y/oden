@@ -15,12 +15,10 @@ type Browser interface {
 }
 
 func DetectBrowser() Browser {
-	/*
 	w := detectWebview2()
 	if w != nil {
 		return w
 	}
-	*/
 
 	chrome := detectChrome()
 	if chrome != nil {
