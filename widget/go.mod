@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/asaskevich/EventBus v0.0.0-20200907212545-49d423059eef
-	github.com/i2y/oden/core v0.0.0-20211209013918-a19ccaa7e7d5
+	github.com/i2y/oden/core v0.0.0-20211209020427-53cf6546680a
 )
 
 require (
