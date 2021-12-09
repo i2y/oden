@@ -28,6 +28,7 @@ type Widget interface {
 	SizeStyle() string
 	SetSizeStyle(s string)
 	TextStyle() *TextStyle
+	OtherStyle() *OtherStyle
 	SetTextStyle(style *TextStyle) Widget
 	Align(ta TextAlign) Widget
 	VerticalAlign(va VerticalAlign) Widget
@@ -37,7 +38,7 @@ type Widget interface {
 	BorderRadius(r int) Widget
 	FontSize(size *FontSize) Widget
 	Padding(n int) Widget
-	// TODO Margin(n int) Widget
+	Margin(n int) Widget
 	OnClick(func(ev core.Event)) Widget
 	OnChange(func(ev core.Event)) Widget
 }
@@ -184,6 +185,7 @@ type TextStyle struct {
 	borderRadius  int
 	fontSize      *FontSize
 	padding       int
+	margin        int
 }
 
 func (s *TextStyle) String() string {
@@ -205,6 +207,15 @@ func (s *TextStyle) String() string {
 	return style
 }
 
+type OtherStyle struct {
+	margin int
+}
+
+func (s *OtherStyle) String() string {
+	style := fmt.Sprintf("padding: %dpx;", s.margin)
+	return style
+}
+
 type Base struct {
 	id           int
 	attached     bool
@@ -216,6 +227,7 @@ type Base struct {
 	sizePolicy   SizePolicy
 	sizeStyle    string
 	textStyle    *TextStyle
+	otherStyle   *OtherStyle
 }
 
 func NewBase() Base {
@@ -226,6 +238,9 @@ func NewBase() Base {
 		textStyle: &TextStyle{
 			align:         Center,
 			verticalAlign: Middle,
+		},
+		otherStyle: &OtherStyle{
+			margin: 0,
 		},
 	}
 }
@@ -405,6 +420,15 @@ func (b *Base) FontSize(size *FontSize) Widget {
 
 func (b *Base) Padding(n int) Widget {
 	b.textStyle.padding = n
+	return b.widget
+}
+
+func (b *Base) OtherStyle() *OtherStyle {
+	return b.otherStyle
+}
+
+func (b *Base) Margin(n int) Widget {
+	b.otherStyle.margin = n
 	return b.widget
 }
 
