@@ -48,7 +48,7 @@ func counter(value int) Widget {
             BorderColor(Gray).
             FontSize(TwoXLarge),
         Row(
-            opBtn("+").OnClick(func(ev core.Event) {
+            opBtn("+").OnClick(func(_ core.Event) {
                 count.Increment()
             }),
             opBtn("-").OnClick(func(_ core.Event) {
