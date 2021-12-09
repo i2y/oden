@@ -19,9 +19,10 @@ func Column(children ...Widget) *ColumnLayout {
 func (c *ColumnLayout) View() string {
 	c.layout()
 	return fmt.Sprintf(
-		`<div id="oden-%s" style="%s">%s</div>`,
+		`<div id="oden-%s" style="%s %s">%s</div>`,
 		c.IDStr(),
 		c.style(),
+		c.SizeStyle(),
 		c.Layout.View(),
 	)
 }
@@ -42,6 +43,8 @@ func (c *ColumnLayout) layout() {
 		case FixedRatioWidth:
 			w.SetSizeStyle(fmt.Sprintf("flex: 1 1 0; width: %d%%; height: 100%%;", w.Width()))
 		case FixedHeight:
+			w.SetSizeStyle(fmt.Sprintf("flex: 0 0 %dpx; width: 100%%;", w.Height()))
+		case FixedRatioHeight:
 			w.SetSizeStyle(fmt.Sprintf("flex: 0 0 %d%%; width: 100%%;", w.Height()))
 		}
 	}

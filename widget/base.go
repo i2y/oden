@@ -355,7 +355,7 @@ func (b *Base) FixedHeight(height int) Widget {
 }
 
 func (b *Base) FixedRatioHeight(height int) Widget {
-	return b.SetSizePolicy(FixedHeight).SetHeight(height)
+	return b.SetSizePolicy(FixedRatioHeight).SetHeight(height)
 }
 
 func (b *Base) FixedSize(w, h int) Widget {
