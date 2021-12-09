@@ -37,7 +37,6 @@ func (s *StrStateModel) SetString(value string) {
 	s.Notify()
 }
 
-
 type IntStateModel struct {
 	Model
 	value int
@@ -97,4 +96,29 @@ func (i *IntStateModel) Mul(n int) {
 func (i *IntStateModel) Div(n int) {
 	i.value = i.value / n
 	i.Notify()
+}
+
+type BoolStateModel struct {
+	Model
+	value bool
+}
+
+func BoolState(value bool) *BoolStateModel {
+	return &BoolStateModel{
+		Model: NewModel(),
+		value: value,
+	}
+}
+
+func (b *BoolStateModel) String() string {
+	return strconv.FormatBool(b.value)
+}
+
+func (b *BoolStateModel) Value() bool {
+	return b.value
+}
+
+func (b *BoolStateModel) SetValue(value bool) {
+	b.value = value
+	b.Notify()
 }

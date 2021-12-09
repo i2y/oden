@@ -14,27 +14,27 @@ func TextArea(placeholder string) *TextAreaWidget {
 }
 
 func TextAreaWithModel(m *TextAreaModel) *TextAreaWidget {
-	i := &TextAreaWidget{
+	t := &TextAreaWidget{
 		Base:  NewBase(),
 		model: m,
 	}
-	m.AddListener(i)
-	i.Base.SetWidget(i)
-	return i
+	m.AddListener(t)
+	t.Base.SetWidget(t)
+	return t
 }
 
-func (i *TextAreaWidget) View() string {
+func (t *TextAreaWidget) View() string {
 	return fmt.Sprintf(
-		`<sl-textarea id="%s" style="%s %s" placeholder="%s" size="medium" resize="none"></sl-button>
+		`<sl-textarea id="%s" style="%s %s" placeholder="%s" size="medium" resize="none"></sl-textarea>
 		 <style>sl-textarea#%s::part(base) {%s; %s}</style>`,
-		i.IDStr(),
-		i.SizeStyle(),
-		i.OtherStyle(),
-		i.model.placeholder,
+		t.IDStr(),
+		t.SizeStyle(),
+		t.OtherStyle(),
+		t.model.placeholder,
 
-		i.IDStr(),
+		t.IDStr(),
 		"--sl-textarea-height-medium: 100%",
-		i.TextStyle(),
+		t.TextStyle(),
 	)
 }
 
@@ -50,10 +50,10 @@ func NewTextAreaModel(placeholder string) *TextAreaModel {
 	}
 }
 
-func (im *TextAreaModel) Placeholder() string {
-	return im.placeholder
+func (sm *TextAreaModel) Placeholder() string {
+	return sm.placeholder
 }
 
-func (im *TextAreaModel) SetPlaceholder(placeholder string) {
-	im.placeholder = placeholder
+func (sm *TextAreaModel) SetPlaceholder(placeholder string) {
+	sm.placeholder = placeholder
 }
