@@ -21,16 +21,15 @@ func Input(m *InputModel) *InputWidget {
 
 func (i *InputWidget) View() string {
 	return fmt.Sprintf(
-		`<sl-input id="%s" style="%s" type="%s" placeholder="%s" size="%s" clearable></sl-button>
+		`<sl-input id="%s" style="%s" type="%s" placeholder="%s" size="medium" clearable></sl-button>
 		 <style>sl-input#%s::part(base) {%s; %s}</style>`,
 		i.IDStr(),
 		i.SizeStyle(),
 		i.model.inputType,
 		i.model.placeholder,
-		i.model.size,
 
 		i.IDStr(),
-		"--sl-input-height-medium: 100%", // TODO
+		"--sl-input-height-medium: 100%",
 		i.TextStyle(),
 	)
 }
@@ -39,15 +38,13 @@ type InputModel struct {
 	Model
 	inputType   InputType
 	placeholder string
-	size        InputSize
 }
 
-func NewInputModel(t InputType, placeholder string, size InputSize) *InputModel {
+func NewInputModel(t InputType, placeholder string) *InputModel {
 	return &InputModel{
 		Model:       NewModel(),
 		inputType:   t,
 		placeholder: placeholder,
-		size:        size,
 	}
 }
 
@@ -96,26 +93,6 @@ func (i InputType) String() string {
 		return "search"
 	case TelInputType:
 		return "tel"
-	}
-	return "text"
-}
-
-type InputSize int
-
-const (
-	MediumInput InputSize = iota
-	LargeInput
-	SmallInput
-)
-
-func (i InputSize) String() string {
-	switch i {
-	case MediumInput:
-		return "medium"
-	case LargeInput:
-		return "large"
-	case SmallInput:
-		return "small"
 	}
 	return "text"
 }
