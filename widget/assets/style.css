@@ -28,3 +28,11 @@ span.label {
   vertical-align: middle;
   display: table-cell;
 }
+
+sl-textarea::part(base) {
+  height: 100%;
+}
+
+sl-textarea::part(textarea) {
+  height: 100%;
+}

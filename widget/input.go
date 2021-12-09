@@ -9,7 +9,11 @@ type InputWidget struct {
 	model *InputModel
 }
 
-func Input(m *InputModel) *InputWidget {
+func Input(inputType InputType, placeholder string) *InputWidget {
+	return InputWithModel(NewInputModel(inputType, placeholder))
+}
+
+func InputWithModel(m *InputModel) *InputWidget {
 	i := &InputWidget{
 		Base:  NewBase(),
 		model: m,
