@@ -34,9 +34,9 @@ type Clickable interface {
 }
 
 type rawEvent struct {
-	Target    string            `json:"target"`
-	EventName string            `json:"event"`
-	Props     map[string]string `json:"props"`
+	Target    string                 `json:"target"`
+	EventName string                 `json:"event"`
+	Props     map[string]interface{} `json:"props"`
 }
 
 func (e *rawEvent) ID() string {
@@ -47,13 +47,13 @@ type Event interface {
 	ID() string
 	Target() Widget
 	EventName() string
-	Props() map[string]string
+	Props() map[string]interface{}
 }
 
 type actualEvent struct {
 	target    Widget
 	eventName string
-	props     map[string]string
+	props     map[string]interface{}
 }
 
 func (e *actualEvent) ID() string {
@@ -68,7 +68,7 @@ func (e *actualEvent) EventName() string {
 	return e.eventName
 }
 
-func (e *actualEvent) Props() map[string]string {
+func (e *actualEvent) Props() map[string]interface{} {
 	return e.props
 }
 
