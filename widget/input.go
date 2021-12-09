@@ -21,10 +21,12 @@ func Input(m *InputModel) *InputWidget {
 
 func (i *InputWidget) View() string {
 	return fmt.Sprintf(
-		`<sl-input id="%s" style="%s %s" type="%s" placeholder="%s" size="medium" clearable></sl-button>
+		`<div style="%s">
+		   <sl-input id="%s" style="%s" type="%s" placeholder="%s" size="medium" clearable></sl-button>
+		 </div>
 		 <style>sl-input#%s::part(base) {%s; %s}</style>`,
-		i.IDStr(),
 		i.SizeStyle(),
+		i.IDStr(),
 		i.OtherStyle(),
 		i.model.inputType,
 		i.model.placeholder,
