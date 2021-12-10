@@ -203,7 +203,7 @@ func (s *TextStyle) String() string {
 	if s.fontSize != nil {
 		style += fmt.Sprintf(" font-size: var(%s);", s.fontSize)
 	}
-	style += fmt.Sprintf(" padding: %dpx", s.padding)
+	style += fmt.Sprintf(" padding: %dpx;", s.padding)
 	return style
 }
 

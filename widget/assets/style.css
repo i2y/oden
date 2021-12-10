@@ -12,7 +12,7 @@ body {
   background-color: var(--sl-color-neutral-0);
   color: var(--sl-color-neutral-900);
   line-height: var(--sl-line-height-normal);
-  overscroll-behavior-x: none
+  overscroll-behavior-x: none;
 }
 
 sl-button::part(base) {
@@ -35,4 +35,12 @@ sl-textarea::part(base) {
 
 sl-textarea::part(textarea) {
   height: 100%;
+}
+
+table,
+td,
+th {
+  border: 1px solid var(--sl-color-gray-300);
+  border-collapse: collapse;
+  text-align: center;
 }

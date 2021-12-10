@@ -11,7 +11,7 @@ type DataTableWidget struct {
 	Base
 	model *TableModel
 	style *DataTableStyle
-	tmpl *template.Template
+	tmpl  *template.Template
 }
 
 type HeaderRow struct {
@@ -61,30 +61,28 @@ func (m *TableModel) AddRow(row *DataRow) {
 
 func DataTable(m *TableModel) *DataTableWidget {
 	tmpl, _ := template.New("data_table").Parse(`
-  <bx-table>
-    <bx-table-head>
-      <bx-table-header-row>
+    <thead>
+      <tr>
 	    {{ range .Header.Labels }}
-        <bx-table-header-cell>{{.}}</bx-table-header-cell>
+        <th>{{.}}</th>
 		{{ end }}
-      </bx-table-header-row>
-    </bx-table-head>
-    <bx-table-body>
+      </tr>
+    </thead>
+    <tbody>
 	  {{ range .Rows }}
-      <bx-table-row>
+      <tr>
 	    {{ range .Items }}
-        <bx-table-cell>{{.}}</bx-table-cell>
+        <td>{{.}}</td>
 		{{ end }}
-      </bx-table-row>
+      </tr>
 	  {{ end }}
-    </bx-table-body>
-  </bx-table>
+    </tbody>
 	`)
 	dt := &DataTableWidget{
 		Base:  NewBase(),
 		model: m,
 		style: &DataTableStyle{},
-		tmpl: tmpl,
+		tmpl:  tmpl,
 	}
 	m.AddListener(dt)
 	dt.Base.SetWidget(dt)
@@ -93,24 +91,26 @@ func DataTable(m *TableModel) *DataTableWidget {
 
 func (dt *DataTableWidget) View() string {
 	return fmt.Sprintf(
-		`<bx-data-table id="%d" %s style="%s">%s</bx-data-table>`,
+		`<div id="%d" style="%s %s width: auto; height: auto;"><table style="%s %s width: 100%%; height: 100%%;">%s</table></div>`,
 		dt.ID(),
-		dt.style,
+		dt.OtherStyle(),
 		dt.SizeStyle(),
+		dt.style,
+		dt.TextStyle(),
 		dt.body(),
 	)
 }
 
-type TableData struct  {
+type TableData struct {
 	Header *HeaderRow
-	Rows []*DataRow
+	Rows   []*DataRow
 }
 
 func (dt *DataTableWidget) body() *strings.Builder {
 	var b strings.Builder
 	data := &TableData{
 		Header: dt.model.headerRow,
-		Rows: dt.model.dataRows,
+		Rows:   dt.model.dataRows,
 	}
 	dt.tmpl.Execute(&b, data)
 	return &b
