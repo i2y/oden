@@ -9,6 +9,6 @@ require (
 )
 
 require (
-	github.com/jchv/go-winloader v0.0.0-20210711035445-715c2860da7e // indirect
-	golang.org/x/sys v0.0.0-20211205182925-97ca703d548d // indirect
+	github.com/jchv/go-winloader v0.0.0-20200815041850-dec1ee9a7fd5 // indirect
+	golang.org/x/sys v0.0.0-20210423082822-04245dca01da // indirect
 )
