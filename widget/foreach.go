@@ -41,7 +41,6 @@ func ForEach(items interface{}, builder interface{}) []Widget {
 	return widgets
 }
 
-/* これらのreflectを使ったコードはgo-funkのコードを参考にしました */
 func isIterable(in interface{}) bool {
 	if in == nil {
 		return false
