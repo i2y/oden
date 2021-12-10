@@ -15,9 +15,11 @@ type Browser interface {
 }
 
 func DetectBrowser() Browser {
-	w := detectWebview2()
-	if w != nil {
-		return w
+	if runtime.GOOS == "windows" {
+		w := detectWebview2()
+		if w != nil {
+			return w
+		}
 	}
 
 	chrome := detectChrome()
