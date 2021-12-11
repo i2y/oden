@@ -14,6 +14,8 @@ github.com/i2y/oden/core v0.0.0-20211210071649-be3479f01e7e h1:iPeUY/KNTr795ObeE
 github.com/i2y/oden/core v0.0.0-20211210071649-be3479f01e7e/go.mod h1:5kFfG97VssqOZLWXenyxTdo+j3e0M1s+TJYARdFUvCI=
 github.com/i2y/oden/core v0.0.0-20211211085407-048e8c5540a1 h1:eXvUpn8/u1FxVv5HYHMbo4uzYdna4B7vWK4kOEy/81k=
 github.com/i2y/oden/core v0.0.0-20211211085407-048e8c5540a1/go.mod h1:5kFfG97VssqOZLWXenyxTdo+j3e0M1s+TJYARdFUvCI=
+github.com/i2y/oden/core v0.0.0-20211211085845-2a86726d137c h1:229LIS+Umuocfn5mXIOXu7seqfHC/CVnKy6CYOe7Z8Q=
+github.com/i2y/oden/core v0.0.0-20211211085845-2a86726d137c/go.mod h1:x6xLPkVzm+vECINUWJhNbhibX1VkxFaO5Yh0qDOmm/Y=
 github.com/jchv/go-webview2 v0.0.0-20211201160117-0a1f544bbf5a h1:Uig8JbeiXQ8+tKLZvlvV7KMUeYyLr3X5KoZWXGgFRMs=
 github.com/jchv/go-webview2 v0.0.0-20211201160117-0a1f544bbf5a/go.mod h1:/BNVc0Sw3Wj6Sz9uSxPwhCEUhhWs92hPde75K2YV24A=
 github.com/jchv/go-winloader v0.0.0-20200815041850-dec1ee9a7fd5/go.mod h1:alcuEEnZsY1WQsagKhZDsoPCRoOijYqhZvPwLG0kzVs=
