@@ -29,10 +29,6 @@ type Widget interface {
 	Attach(app *App)
 }
 
-type Clickable interface {
-	OnClick(handler func(ev *Event)) Widget
-}
-
 type rawEvent struct {
 	Target    string                 `json:"target"`
 	EventName string                 `json:"event"`
