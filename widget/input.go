@@ -30,12 +30,12 @@ func (i *InputWidget) View() string {
 		 </div>
 		 <style>sl-input#%s::part(base) {%s; %s}</style>`,
 		i.SizeStyle(),
-		i.IDStr(),
+		i.ID(),
 		i.OtherStyle(),
 		i.model.inputType,
 		i.model.placeholder,
 
-		i.IDStr(),
+		i.ID(),
 		"--sl-input-height-medium: 100%",
 		i.TextStyle(),
 	)

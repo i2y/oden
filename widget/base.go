@@ -217,7 +217,7 @@ func (s *OtherStyle) String() string {
 }
 
 type Base struct {
-	id           int
+	id           core.WidgetID
 	attached     bool
 	app          *core.App
 	widget       Widget
@@ -245,12 +245,8 @@ func NewBase() Base {
 	}
 }
 
-func (b *Base) ID() int {
+func (b *Base) ID() core.WidgetID {
 	return b.id
-}
-
-func (b *Base) IDStr() string {
-	return fmt.Sprintf("oden-%d", b.id)
 }
 
 func (b *Base) View() string {

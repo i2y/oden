@@ -29,12 +29,12 @@ func (s *SwitchWidget) View() string {
 	return fmt.Sprintf(
 		`<sl-switch id="%s" style="%s %s" checked>%s</sl-switch>
 		 <style>sl-switch#%s::part(base) {%s}</style>`,
-		s.IDStr(),
+		s.ID(),
 		s.SizeStyle(),
 		s.OtherStyle(),
 		s.label,
 
-		s.IDStr(),
+		s.ID(),
 		s.TextStyle(),
 	)
 }

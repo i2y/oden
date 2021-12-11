@@ -27,12 +27,12 @@ func (t *TextAreaWidget) View() string {
 	return fmt.Sprintf(
 		`<sl-textarea id="%s" style="%s %s" placeholder="%s" size="medium" resize="none"></sl-textarea>
 		 <style>sl-textarea#%s::part(base) {%s; %s}</style>`,
-		t.IDStr(),
+		t.ID(),
 		t.SizeStyle(),
 		t.OtherStyle(),
 		t.model.placeholder,
 
-		t.IDStr(),
+		t.ID(),
 		"--sl-textarea-height-medium: 100%",
 		t.TextStyle(),
 	)

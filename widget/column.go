@@ -20,7 +20,7 @@ func (c *ColumnLayout) View() string {
 	c.layout()
 	return fmt.Sprintf(
 		`<div id="oden-%s" style="%s %s">%s</div>`,
-		c.IDStr(),
+		c.ID(),
 		c.style(),
 		c.SizeStyle(),
 		c.Layout.View(),

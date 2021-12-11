@@ -22,9 +22,25 @@ import (
 	"golang.org/x/net/websocket"
 )
 
+type WidgetID int
+
+func (id WidgetID) String() string {
+	return fmt.Sprintf("oden-%d", id)
+}
+
+var widgetID WidgetID
+
+var idMutex sync.Mutex
+
+func NewWidgetID() WidgetID {
+	idMutex.Lock()
+	defer idMutex.Unlock()
+	widgetID++
+	return widgetID
+}
+
 type Widget interface {
-	ID() int
-	IDStr() string
+	ID() WidgetID
 	View() string
 	Attach(app *App)
 }
@@ -53,7 +69,7 @@ type actualEvent struct {
 }
 
 func (e *actualEvent) ID() string {
-	return fmt.Sprintf("%s.%s", e.target.IDStr(), e.eventName)
+	return fmt.Sprintf("%s.%s", e.target.ID(), e.eventName)
 }
 
 func (e *actualEvent) Target() Widget {
@@ -237,16 +253,6 @@ func (app *App) PostUpdate(w Widget) {
 		w.ID(),
 		w.View(),
 	)
-}
-
-var widgetID = 0
-var idMutex sync.Mutex
-
-func NewWidgetID() int {
-	idMutex.Lock()
-	defer idMutex.Unlock()
-	widgetID++
-	return widgetID
 }
 
 var bus = EventBus.New()

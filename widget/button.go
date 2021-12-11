@@ -32,12 +32,12 @@ func (b *ButtonWidget) View() string {
 	return fmt.Sprintf(
 		`<sl-button class="btn" id="%s" %s style="%s %s" size="medium">%s</sl-button>
 		 <style> sl-button#%s::part(base) {%s; %s}</style>`,
-		b.IDStr(),
+		b.ID(),
 		b.style,
 		b.SizeStyle(),
 		b.OtherStyle(),
 		html.EscapeString(b.model.label),
-		b.IDStr(),
+		b.ID(),
 		"--sl-input-height-medium: 100%",
 		b.TextStyle(),
 	)

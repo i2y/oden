@@ -19,7 +19,7 @@ func Divider() *DividerWidget {
 func (d *DividerWidget) View() string {
 	return fmt.Sprintf(
 		`<sl-divider id="%s" style="%s; height: 32px"></sl-divider>`, // TODO height
-		d.IDStr(),
+		d.ID(),
 		d.SizeStyle(),
 	)
 }

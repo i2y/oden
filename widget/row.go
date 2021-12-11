@@ -20,7 +20,7 @@ func (r *RowLayout) View() string {
 	r.layout()
 	return fmt.Sprintf(
 		`<div id="%s" style="%s %s">%s</div>`,
-		r.IDStr(),
+		r.ID(),
 		r.style(),
 		r.SizeStyle(),
 		r.Layout.View(),

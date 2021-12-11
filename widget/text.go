@@ -29,7 +29,7 @@ func Text(s StringEventPublisher) *TextWidget {
 func (t *TextWidget) View() string {
 	return fmt.Sprintf(
 		`<div id="%s" style="%s display: table;"><span class="label" style="%s">%s</span></div>`,
-		t.IDStr(),
+		t.ID(),
 		t.SizeStyle(),
 		t.TextStyle(),
 		html.EscapeString(t.model.String()),

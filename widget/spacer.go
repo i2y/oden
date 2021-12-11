@@ -19,7 +19,7 @@ func Spacer() *SpacerWidget {
 func (s *SpacerWidget) View() string {
 	return fmt.Sprintf(
 		`<div id="%s" style="%s"></div>`,
-		s.IDStr(),
+		s.ID(),
 		s.SizeStyle(),
 	)
 }
