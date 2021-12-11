@@ -7,11 +7,11 @@ import (
 	"runtime"
 )
 
-type Browser interface {
-	Open(title string, port, width, height int)
+type browser interface {
+	open(title string, port, width, height int)
 }
 
-func DetectBrowser() Browser {
+func detectBrowser() browser {
 	if runtime.GOOS == "windows" {
 		w := detectWebview2()
 		if w != nil {
@@ -43,12 +43,12 @@ func DetectBrowser() Browser {
 }
 
 
-type Chrome struct {
+type chrome struct {
 	execPath string
 	cmd      *exec.Cmd
 }
 
-func (c *Chrome) Open(_ string, port, width, height int) {
+func (c *chrome) open(_ string, port, width, height int) {
 	cmd := exec.Command(
 		c.execPath,
 		fmt.Sprintf("--app=http://localhost:%d", port),
@@ -58,7 +58,7 @@ func (c *Chrome) Open(_ string, port, width, height int) {
 	c.cmd = cmd
 }
 
-func detectChrome() *Chrome {
+func detectChrome() *chrome {
 	var paths []string
 	switch runtime.GOOS {
 	case "darwin":
@@ -88,19 +88,19 @@ func detectChrome() *Chrome {
 		if _, err := os.Stat(path); os.IsNotExist(err) {
 			continue
 		}
-		return &Chrome{
+		return &chrome{
 			execPath: path,
 		}
 	}
 	return nil
 }
 
-type Edge struct {
+type edge struct {
 	execPath string
 	cmd      *exec.Cmd
 }
 
-func (e *Edge) Open(_ string, port, width, height int) {
+func (e *edge) open(_ string, port, width, height int) {
 	cmd := exec.Command(
 		e.execPath,
 		fmt.Sprintf("--app=http://localhost:%d", port),
@@ -110,7 +110,7 @@ func (e *Edge) Open(_ string, port, width, height int) {
 	e.cmd = cmd
 }
 
-func detectEdge() *Edge {
+func detectEdge() *edge {
 	var paths []string
 	switch runtime.GOOS {
 	case "darwin":
@@ -130,19 +130,19 @@ func detectEdge() *Edge {
 		if _, err := os.Stat(path); os.IsNotExist(err) {
 			continue
 		}
-		return &Edge{
+		return &edge{
 			execPath: path,
 		}
 	}
 	return nil
 }
 
-type Chromium struct {
+type chromium struct {
 	execPath string
 	cmd      *exec.Cmd
 }
 
-func (c *Chromium) Open(_ string, port, width, height int) {
+func (c *chromium) Open(_ string, port, width, height int) {
 	cmd := exec.Command(
 		c.execPath,
 		fmt.Sprintf("--app=http://localhost:%d", port),
@@ -152,7 +152,7 @@ func (c *Chromium) Open(_ string, port, width, height int) {
 	c.cmd = cmd
 }
 
-func detectChromium() *Chrome {
+func detectChromium() *chrome {
 	var paths []string
 	switch runtime.GOOS {
 	case "darwin":
@@ -179,19 +179,19 @@ func detectChromium() *Chrome {
 		if _, err := os.Stat(path); os.IsNotExist(err) {
 			continue
 		}
-		return &Chrome{
+		return &chrome{
 			execPath: path,
 		}
 	}
 	return nil
 }
 
-type Firefox struct {
+type firefox struct {
 	execPath string
 	cmd      *exec.Cmd
 }
 
-func (f *Firefox) Open(_ string, port, width, height int) {
+func (f *firefox) open(_ string, port, width, height int) {
 	cmd := exec.Command(
 		f.execPath,
 		"-no-remote",
@@ -203,7 +203,7 @@ func (f *Firefox) Open(_ string, port, width, height int) {
 	f.cmd = cmd
 }
 
-func detectFirefox() *Firefox {
+func detectFirefox() *firefox {
 	var paths []string
 	switch runtime.GOOS {
 	case "darwin":
@@ -228,7 +228,7 @@ func detectFirefox() *Firefox {
 		if _, err := os.Stat(path); os.IsNotExist(err) {
 			continue
 		}
-		return &Firefox{
+		return &firefox{
 			execPath: path,
 		}
 	}

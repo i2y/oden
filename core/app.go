@@ -120,7 +120,7 @@ func NewApp(name string, width, height int, view Widget) *App {
 		if !(ipAddr == "[::1]" || ipAddr == "127.0.0.1" || ipAddr == "localhost" || ipAddr == "::1") {
 			return
 		}
-		err := tmpl.Execute(w, &TemplateParams{
+		err := tmpl.Execute(w, &templateParams{
 			Name:         app.name,
 			HeadElements: headElements,
 			Events:       targetEvents,
@@ -195,7 +195,7 @@ var indexTmpl string
 //go:embed turbo.es2017-umd.js
 var turbo string
 
-type TemplateParams struct {
+type templateParams struct {
 	Name         string
 	HeadElements string
 	Events       []TargetEvent
@@ -214,12 +214,12 @@ func (app *App) port() int {
 
 func (app *App) Run() {
 	go app.serve()
-	browser := DetectBrowser()
+	browser := detectBrowser()
 	if browser == nil {
 		log.Fatal("any supported browser not found")
 		return
 	}
-	browser.Open(app.name, app.port(), app.width, app.height)
+	browser.open(app.name, app.port(), app.width, app.height)
 
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
