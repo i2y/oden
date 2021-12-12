@@ -1,7 +1,7 @@
 //go:build !windows
 // +build !windows
 
-package oden
+package core
 
 type WebView2 struct{}
 

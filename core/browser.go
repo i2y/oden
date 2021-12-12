@@ -1,4 +1,4 @@
-package oden
+package core
 
 import (
 	"fmt"
