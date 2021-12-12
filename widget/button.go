@@ -7,21 +7,27 @@ import (
 
 type ButtonWidget struct {
 	Base
-	model *ButtonModel
-	style *ButtonStyle
+	model  *ButtonModel
+	option *ButtonOption
 }
 
-func Button(label string) *ButtonWidget {
-	return ButtonWithModel(NewButtonModel(label))
+func Button(label string, options ...func(*ButtonOption)) *ButtonWidget {
+	return ButtonWithModel(NewButtonModel(label), options...)
 }
 
-func ButtonWithModel(m *ButtonModel) *ButtonWidget {
+func ButtonWithModel(m *ButtonModel, options ...func(*ButtonOption)) *ButtonWidget {
+	o := &ButtonOption{
+		kind:  DefaultKind,
+		shape: DefaultShape,
+	}
+	for _, option := range options {
+		option(o)
+	}
+
 	b := &ButtonWidget{
-		Base:  NewBase(),
-		model: m,
-		style: &ButtonStyle{
-			kind: DefaultKind,
-		},
+		Base:   NewBase(),
+		model:  m,
+		option: o,
 	}
 	m.AddListener(b)
 	b.Base.SetWidget(b)
@@ -33,7 +39,7 @@ func (b *ButtonWidget) View() string {
 		`<sl-button class="btn" id="%s" %s style="%s %s" size="medium">%s</sl-button>
 		 <style> sl-button#%s::part(base) {%s; %s}</style>`,
 		b.ID(),
-		b.style,
+		b.option,
 		b.SizeStyle(),
 		b.OtherStyle(),
 		html.EscapeString(b.model.label),
@@ -59,21 +65,6 @@ func (b *ButtonWidget) Disable() *ButtonWidget {
 
 func (b *ButtonWidget) Enable() *ButtonWidget {
 	b.model.Enable()
-	return b
-}
-
-func (b *ButtonWidget) SetStyle(style *ButtonStyle) *ButtonWidget {
-	b.style = style
-	return b
-}
-
-func (b *ButtonWidget) Kind(k Kind) *ButtonWidget {
-	b.style.kind = k
-	return b
-}
-
-func (b *ButtonWidget) Shape(s Shape) *ButtonWidget {
-	b.style.shape = s
 	return b
 }
 
@@ -117,10 +108,10 @@ func (bm *ButtonModel) Loading(flag bool) {
 	bm.Notify()
 }
 
-type Kind int
+type kind int
 
 const (
-	DefaultKind Kind = iota
+	DefaultKind kind = iota
 	Primary
 	Success
 	Neutral
@@ -128,7 +119,7 @@ const (
 	Dangerous
 )
 
-func (k Kind) String() string {
+func (k kind) String() string {
 	switch k {
 	case DefaultKind:
 		return "default"
@@ -147,16 +138,16 @@ func (k Kind) String() string {
 	}
 }
 
-type Shape int
+type shape int
 
 const (
-	DefaultShape Shape = iota
+	DefaultShape shape = iota
 	Outline
 	Pill
 	Circle
 )
 
-func (s Shape) String() string {
+func (s shape) String() string {
 	switch s {
 	case DefaultShape:
 		return ""
@@ -170,11 +161,23 @@ func (s Shape) String() string {
 	return ""
 }
 
-type ButtonStyle struct {
-	kind  Kind
-	shape Shape
+type ButtonOption struct {
+	kind  kind
+	shape shape
 }
 
-func (bs *ButtonStyle) String() string {
-	return fmt.Sprintf(`type = "%s" %s`, bs.kind, bs.shape)
+func Type(k kind) func(*ButtonOption) {
+	return func(option *ButtonOption) {
+		option.kind = k
+	}
+}
+
+func Shape(s shape) func(*ButtonOption) {
+	return func(option *ButtonOption) {
+		option.shape = s
+	}
+}
+
+func (o *ButtonOption) String() string {
+	return fmt.Sprintf(`type="%s" %s`, o.kind, o.shape)
 }

@@ -37,7 +37,7 @@ func (c *ColumnLayout) layout() {
 		case Expanding:
 			w.SetSizeStyle("flex: 1 1 0; width: 100%; height: 100%;")
 		case Fixed:
-			w.SetSizeStyle(fmt.Sprintf("flex: 0 0 %dpx; height: %dpx;", w.Width(), w.Height()))
+			w.SetSizeStyle(fmt.Sprintf("flex: 0 0 %dpx; width: %dpx;", w.Height(), w.Width()))
 		case FixedWidth:
 			w.SetSizeStyle(fmt.Sprintf("flex: 1 1 0; width: %dpx; height: 100%%;", w.Width()))
 		case FixedRatioWidth:
