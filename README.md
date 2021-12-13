@@ -2,13 +2,13 @@
 Oden is a cross-platform desktop GUI toolkit for Gophers.
 
 ## Introduction
-The goal of Oden is to provide a single fine framework for gophers easy to create and distribute desktop GUI applications for several OS platforms. The idea of Oden is to successfully achevie the goal by combining browser technology available on most platforms with the easy cross-compilation that is an important feature of Go.
+The goal of Oden is to provide a single fine framework for gophers easy to create and distribute desktop GUI applications for several OS platforms. The idea of Oden is to successfully achieve the goal by combining browser technology available on most platforms with the easy cross-compilation that is an important feature of Go.
 
 ## Features
 - Oden is a pure Go library without cgo.
 - Oden utilizes a browser that is already installed on the desktop where an Oden app is installed.
 - Oden's `widget` module doesn't require Gophers to have any knowledge of HTML/CSS/JS (you also can use knowledge of HTML/CSS/JS).
-- The `widget` module supports decralative UI style programming.
+- The `widget` module supports declarative UI style programming.
 
 ## A Quick Look
 This example is a very simple counter app using Oden.
@@ -72,7 +72,7 @@ $ ./main
 ### Source code repository Layout
 Oden source code repository is a multi-module repository.
 Oden is composed of two modules: `core` module and `widget` module.
-- The `core` module provides the interaction with a browser, widget interface required by core module, etc.
+- The `core` module provides interaction with a browser required for widgets, `Widget` interface needed to be implemented by widget module, etc.
 - The `widget` module provides a standard set of widgets for Oden.
 
 Note: You do not necessarily need to use the `widget` module. If you want, you can define and use your own widget set module. For this purpose, Oden provides `core` and `widget` as independent modules, to make the boundary between them clear. This also reduces the size of the generated binary when combining core module with your own widget module, without having to include the standard `widget` module.

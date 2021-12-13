@@ -1,3 +1,6 @@
+/*
+Package core provides interaction with a browser required for widgets, `Widget` interface needed to be implemented by widget module, etc.
+*/
 package core
 
 import (
