@@ -18,7 +18,7 @@ This example is a very simple counter app using Oden.
 package main
 
 import (
-    core "github.com/i2y/oden/core"
+    "github.com/i2y/oden/core"
     . "github.com/i2y/oden/widget"
 )
 
