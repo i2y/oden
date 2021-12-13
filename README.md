@@ -7,7 +7,7 @@ The goal of Oden is to provide a single fine framework for gophers easy to creat
 ## Features
 - Oden is a pure Go library without cgo.
 - Oden utilizes a browser that is already installed on the desktop where an Oden app is installed.
-- Oden doesn't require Gophers to have any knowledge of HTML/CSS/JS (you also can use knowledge of HTML/CSS/JS).
+- Oden's widget module doesn't require Gophers to have any knowledge of HTML/CSS/JS (you also can use knowledge of HTML/CSS/JS).
 - The `widget` module supports decralative UI style programming.
 
 ## A Quick Look
