@@ -2,6 +2,8 @@ github.com/asaskevich/EventBus v0.0.0-20200907212545-49d423059eef h1:2JGTg6JapxP
 github.com/asaskevich/EventBus v0.0.0-20200907212545-49d423059eef/go.mod h1:JS7hed4L1fj0hXcyEejnW57/7LCetXggd+vwrRnYeII=
 github.com/i2y/oden/core v0.0.0-20211212235841-8edff076c223 h1:3BGF/eLWU05oOqO8FZEuUZSL9f7TmWz8lAv2j00OUco=
 github.com/i2y/oden/core v0.0.0-20211212235841-8edff076c223/go.mod h1:x6xLPkVzm+vECINUWJhNbhibX1VkxFaO5Yh0qDOmm/Y=
+github.com/i2y/oden/core v0.1.0 h1:0VeqD8nz1kdZPWFkI++vEfjUAB1QoghEaas9Yw0a+RE=
+github.com/i2y/oden/core v0.1.0/go.mod h1:x6xLPkVzm+vECINUWJhNbhibX1VkxFaO5Yh0qDOmm/Y=
 github.com/jchv/go-webview2 v0.0.0-20211201160117-0a1f544bbf5a h1:Uig8JbeiXQ8+tKLZvlvV7KMUeYyLr3X5KoZWXGgFRMs=
 github.com/jchv/go-webview2 v0.0.0-20211201160117-0a1f544bbf5a/go.mod h1:/BNVc0Sw3Wj6Sz9uSxPwhCEUhhWs92hPde75K2YV24A=
 github.com/jchv/go-winloader v0.0.0-20200815041850-dec1ee9a7fd5/go.mod h1:alcuEEnZsY1WQsagKhZDsoPCRoOijYqhZvPwLG0kzVs=
